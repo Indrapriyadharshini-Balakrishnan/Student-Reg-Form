@@ -136,9 +136,11 @@
                 <td class="border p-2"> <button class="bg-red-600 text-white rounded p-1 delete-btn">Delete</button></td>`;
 
             tableBody.appendChild(row);
+            
 
             // Show table when first entry is added
             document.getElementById('tableid').classList.remove('hidden');
+            document.getElementById("successMessage").classList.add("hidden");
 
             //Reset form
             registrationForm.reset();
