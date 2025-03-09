@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
+        <h2 class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-6">
+            Student Registration 🎓
+        </h2>
+        
+        <form id="registrationForm">
+            <!-- Full Name -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Full Name</label>
+                <input type="text" id="name" class="w-full border-2 border-purple-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none transition" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" class="w-full border-2 border-blue-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" id="phone" class="w-full border-2 border-green-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none transition" placeholder="Enter your phone number" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Gender</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center text-gray-700">
+                        <input type="radio" name="gender" value="Male" class="mr-2 accent-blue-500" required> Male
+                    </label>
+                    <label class="flex items-center text-gray-700">
+                        <input type="radio" name="gender" value="Female" class="mr-2 accent-pink-500" required> Female
+                    </label>
+                </div>
+            </div>
+
+            <!-- Course Selection -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Select Course</label>
+                <select id="course" class="w-full border-2 border-yellow-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none transition">
+                    <option value="">Choose a course</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Business Management">Business Management</option>
+                    <option value="Arts">Arts</option>
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="block text-lg font-semibold text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" class="w-full border-2 border-red-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-red-400 focus:outline-none transition" placeholder="Create a password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:opacity-90 transition">
+                🚀 Register Now
+            </button>
+        </form>
+
+        <!-- Success Message -->
+        <p id="successMessage" class="text-green-600 text-center mt-4 font-bold hidden">🎉 Registration Successful!</p>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("successMessage").classList.remove("hidden");
+            this.reset(); // Reset form after submission
+        });
+    </script>
+
+</body>
+</html>

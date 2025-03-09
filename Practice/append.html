@@ -1,0 +1,21 @@
+<button id="btn">Add</button>
+<div class="container">
+<p>Hi</p>
+</div>
+
+<script>
+
+    let btn = document.getElementById("btn")
+    let container = document.querySelector(".container")
+    
+
+    btn.addEventListener("click", function () {
+        
+        let heading = document.createElement("h1")
+        heading.textContent = "Hello"
+        container.prepend(heading)
+        console.log(heading)
+
+    })
+
+</script>

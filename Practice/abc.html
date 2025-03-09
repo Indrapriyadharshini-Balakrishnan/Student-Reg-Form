@@ -1,0 +1,29 @@
+<!-- First Form (User Input) -->
+<form id="form1">
+    <input type="text" id="name" placeholder="Enter Name" required />
+    <input type="email" id="email" placeholder="Enter Email" required />
+    <button type="submit">Submit</button>
+  </form>
+  
+  <hr>
+  
+  <!-- Second Form (Displays Submitted Values) -->
+  <form id="form2">
+    <input type="text" id="displayName" placeholder="Name will appear here" readonly />
+    <input type="email" id="displayEmail" placeholder="Email will appear here" readonly />
+  </form>
+  
+  <script>
+    document.getElementById("form1").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent actual form submission
+  
+      // Get values from the first form
+      let nameValue = document.getElementById("name").value;
+      let emailValue = document.getElementById("email").value;
+  
+      // Display values in the second form
+      document.getElementById("displayName").value = nameValue;
+      document.getElementById("displayEmail").value = emailValue;
+    });
+  </script>
+  

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form & User List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-400 to-purple-500 min-h-screen flex items-center justify-center p-6">
+
+    <div class="bg-white shadow-lg p-6 rounded-lg w-full max-w-lg">
+        <!-- Form -->
+        <h2 class="text-2xl font-bold text-center text-blue-600">Enter Details</h2>
+        <form id="dataForm" class="mt-4 space-y-4">
+            <div>
+                <label class="block text-gray-700 font-semibold">Name:</label>
+                <input type="text" id="name" class="w-full border border-gray-300 p-2 rounded focus:ring focus:ring-blue-300" placeholder="Enter your name" required>
+            </div>
+            <div>
+                <label class="block text-gray-700 font-semibold">Email:</label>
+                <input type="email" id="email" class="w-full border border-gray-300 p-2 rounded focus:ring focus:ring-blue-300" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 font-semibold">
+                Add to Table
+            </button>
+        </form>
+
+        <!-- Table (Appears Below Form) -->
+        <div id="tableContainer" class="mt-8 hidden">
+            <h2 class="text-2xl font-bold text-center text-purple-600">User List</h2>
+            <table class="w-full border-collapse mt-4">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="border p-2">Name</th>
+                        <th class="border p-2">Email</th>
+                        <th class="border p-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data Rows Will Be Added Here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Show table when first entry is added
+            document.getElementById('tableContainer').classList.remove('hidden');
+
+            // Add row to table
+            const tableBody = document.getElementById('tableBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border p-2 text-center text-gray-700">${name}</td>
+                <td class="border p-2 text-center text-gray-700">${email}</td>
+                <td class="border p-2 text-center">
+                    <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 delete-btn">Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+
+            // Clear form fields
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+
+            // Add delete functionality
+            row.querySelector('.delete-btn').addEventListener('click', function() {
+                row.remove();
+                // Hide table if no rows left
+                if (tableBody.children.length === 0) {
+                    document.getElementById('tableContainer').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

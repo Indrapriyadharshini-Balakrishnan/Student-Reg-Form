@@ -1,0 +1,28 @@
+.container {
+    text-align: center;
+}
+.student{
+display: flex;
+justify-content: center;
+}
+.image img {
+    width: 300px;
+}
+input{
+    height: 30px;
+    border: solid black 2px;
+}
+.entry{
+padding: 2px;
+margin: 2px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5px;
+align-items: center;
+
+}
+.entry #save{
+    align-items: end;
+    height: 30px;
+  
+}

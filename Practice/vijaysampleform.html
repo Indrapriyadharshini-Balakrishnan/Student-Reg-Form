@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Student Registration Form</title>
+</head>
+
+<body class="bg-gradient-to-r from-yellow-600 via-yellow-400 to-red-500 flex items-center justify-center min-h-screen">
+    <div class="bg-transparent p-5 w-full flex flex-col items-center gap-10">
+        <div class="studentform p-10 bg-white rounded-lg shadow-lg w-full max-w-lg">
+            <h2 class="text-center font-bold text-red-900 text-2xl mb-4">Student Registration Form</h2>
+            <form id="registrationForm" class="space-y-4">
+                <div class="flex flex-col">
+                    <label class="font-bold">Name</label>
+                    <input type="text" id="name" placeholder="Enter your Name"
+                        class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold">Age</label>
+                    <input type="number" id="age" placeholder="Enter your Age"
+                        class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold">Gender</label>
+                    <div class="flex gap-4">
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        <label><input type="radio" name="gender" value="Other" required> Other</label>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold">Email</label>
+                    <input type="email" id="email" placeholder="Enter your E-mail"
+                        class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold">Course</label>
+                    <select id="course" class="w-full p-2 border border-gray-300 rounded" required>
+                        <option value="">Choose a course</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Robotics">Robotics</option>
+                    </select>
+                </div>
+                <button id="save" class="bg-red-900 w-full text-white p-2 rounded-xl mt-4">Save</button>
+            </form>
+            <p id="successMessage" class="text-green-600 text-center mt-4 font-bold hidden">🎉 Registration Successful!
+            </p>
+        </div>
+
+        <section id="tableid"
+            class="studentinfoTable w-full max-w-4xl bg-white p-5 rounded-lg shadow-lg hidden relative">
+            <h1 class="text-xl font-bold text-center mb-4">Registered Students</h1>
+            <div class="overflow-auto max-h-96">
+                <table id="studentinfoTable" class="w-full border-collapse border border-black text-center">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="border p-2">Name</th>
+                            <th class="border p-2">Age</th>
+                            <th class="border p-2">Gender</th>
+                            <th class="border p-2">Email</th>
+                            <th class="border p-2">Course</th>
+                            <th class="border p-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="border border-black">
+                        <!-- Data rows will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            document.getElementById("successMessage").classList.remove("hidden");
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let gender = document.querySelector('input[name="gender"]:checked').value;
+            let email = document.getElementById("email").value;
+            let course = document.getElementById("course").value;
+
+            const tableBody = document.getElementById("tableBody");
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border p-2">${name}</td>
+                <td class="border p-2">${age}</td>
+                <td class="border p-2">${gender}</td>
+                <td class="border p-2">${email}</td>
+                <td class="border p-2">${course}</td>
+                <td class="border p-2"> <button class="bg-red-600 text-white p-1 rounded delete-btn">Delete</button></td>`;
+
+            tableBody.appendChild(row);
+            document.getElementById('tableid').classList.remove('hidden');
+
+            row.querySelector(".delete-btn").addEventListener("click", function () {
+                row.remove();
+                if (tableBody.children.length === 0) {
+                    document.getElementById('tableid').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
